@@ -4,7 +4,7 @@
 //
 //  Created by Антон Стафеев on 04.10.2022.
 //
-
+import SwiftKeychainWrapper
 import UIKit
 
 final class MainViewController: UIViewController {
@@ -27,21 +27,56 @@ final class MainViewController: UIViewController {
     var myPics = [Images]()
     let defaults = UserDefaults.standard
     
+    var lockButton: UIBarButtonItem!
+    var setPasswordButton: UIBarButtonItem!
+    
+    var myPassword: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.backButtonTitle = ""
+
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.tintColor = .red
-        navigationItem.backButtonTitle = ""
-        title = "Фото для скрытия"
+        title = "Секретная галерея"
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: UIColor.green.cgColor,
-            .font: UIFont(name: "Noto Sans Oriya", size: 18) as Any]
+            .font: UIFont(name: "Noto Sans Oriya", size: 16) as Any]
 
+        setPasswordButton = UIBarButtonItem(image: UIImage(systemName: "key.viewfinder"), style: .plain, target: self, action: #selector(setPasswordTapped))
+        lockButton = UIBarButtonItem(image: UIImage(systemName: "lock"), style: .plain, target: self, action: #selector(lockButtonTapped))
+        navigationItem.leftBarButtonItems = [setPasswordButton, lockButton]
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPicTapped))
-        
+
         view.addSubview(picsCollectionView)
         setDelegates()
         loadSavedImages()
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(lockButtonTapped), name: UIApplication.willResignActiveNotification, object: nil)
+    }
+    
+    @objc private func setPasswordTapped() {
+        let ac = UIAlertController(title: "Создайте пароль", message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        ac.addTextField { textField in
+            textField.isSecureTextEntry = true
+            textField.keyboardType = .numberPad
+            textField.placeholder = "Придумайте пароль"
+        }
+        ac.addAction(UIAlertAction(title: "OK", style: .default) {[weak self] _ in
+            if let text = ac.textFields?[0].text {
+                self?.myPassword = text
+                KeychainWrapper.standard.set(self?.myPassword ?? "Не удалось сохранить", forKey: "password")
+            }
+        })
+        present(ac, animated: true)
+    }
+    
+    @objc func lockButtonTapped() {
+        let vc = BlockedViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true)
     }
     
     override func viewDidLayoutSubviews() {
