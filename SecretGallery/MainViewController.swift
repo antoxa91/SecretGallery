@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  SecretGallery
 //
 //  Created by Антон Стафеев on 04.10.2022.
@@ -101,7 +101,7 @@ extension MainViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - PHPickerViewControllerDelegate
+// MARK: - UIImagePickerControllerDelegate & UINavigationControllerDelegate
 extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @objc private func addPicTapped() {
