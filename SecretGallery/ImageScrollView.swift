@@ -83,13 +83,13 @@ final class ImageScrollView: UIScrollView {
         var frameToCenter = imageView.frame
         
         if frameToCenter.size.width < boundSize.width {
-            frameToCenter.origin.x = (boundSize.width - frameToCenter.size.width) / 2
+            frameToCenter.origin.x = (boundSize.width - frameToCenter.size.width) / 3
         } else {
             frameToCenter.origin.x = 0
         }
         
         if frameToCenter.size.height < boundSize.height {
-            frameToCenter.origin.y = (boundSize.height - frameToCenter.size.height) / 2
+            frameToCenter.origin.y = (boundSize.height - frameToCenter.size.height) / 3
         } else {
             frameToCenter.origin.y = 0
         }

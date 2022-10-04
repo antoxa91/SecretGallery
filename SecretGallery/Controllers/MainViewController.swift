@@ -35,19 +35,16 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.backButtonTitle = ""
-
-        view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.tintColor = .red
+        
+        navigationController?.navigationBar.tintColor = .systemMint
         title = "Секретная галерея"
-        navigationController?.navigationBar.titleTextAttributes = [
-            .foregroundColor: UIColor.green.cgColor,
-            .font: UIFont(name: "Noto Sans Oriya", size: 16) as Any]
-
+        
         setPasswordButton = UIBarButtonItem(image: UIImage(systemName: "key.viewfinder"), style: .plain, target: self, action: #selector(setPasswordTapped))
         lockButton = UIBarButtonItem(image: UIImage(systemName: "lock"), style: .plain, target: self, action: #selector(lockButtonTapped))
+        lockButton.tintColor = .red
         navigationItem.leftBarButtonItems = [setPasswordButton, lockButton]
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPicTapped))
-
+        
         view.addSubview(picsCollectionView)
         setDelegates()
         loadSavedImages()
@@ -149,15 +146,15 @@ extension MainViewController: UIImagePickerControllerDelegate, UINavigationContr
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         guard let image = info[.editedImage] as? UIImage else {return}
-
-                let imageName = UUID().uuidString
-                let imagePath = Images.getDocumentsDirectory().appendingPathComponent(imageName)
-                if let jpegData = image.jpegData(compressionQuality: 0.5) {
-                    try? jpegData.write(to: imagePath)
-                }
-                let newPic = Images(image: imageName)
-                myPics.append(newPic)
-            
+        
+        let imageName = UUID().uuidString
+        let imagePath = Images.getDocumentsDirectory().appendingPathComponent(imageName)
+        if let jpegData = image.jpegData(compressionQuality: 0.5) {
+            try? jpegData.write(to: imagePath)
+        }
+        let newPic = Images(image: imageName)
+        myPics.append(newPic)
+        
         DispatchQueue.main.async {
             self.picsCollectionView.reloadData()
         }
