@@ -21,7 +21,11 @@ final class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        view.setGradietColor(
+            colorOne: .init(red: 2/255, green: 4/255, blue: 20/255, alpha: 1),
+            colorTwo: .init(red: 66/255, green: 2/255, blue: 10/255, alpha: 1),
+            colorThree: .init(red: 2/255, green: 4/255, blue: 20/255, alpha: 1)
+        )
         scrollView = ImageScrollView(frame: view.bounds)
         view.addSubview(scrollView)
         setConstraints()

@@ -1,5 +1,5 @@
 //
-//  GradientButton.swift
+//  Gradients.swift
 //  SecretGallery
 //
 //  Created by Антон Стафеев on 04.10.2022.
@@ -33,4 +33,33 @@ final class GradientButton: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+// MARK: - GradientView
+class GradientView: UIView {
+    let gradient = CAGradientLayer()
+
+    init(colors: [CGColor]) {
+        super.init(frame: .zero)
+        gradient.colors = colors
+        layer.addSublayer(gradient)
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        gradient.frame = bounds
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: - UIView
+extension UIView {
+    func setGradietColor(colorOne: UIColor, colorTwo: UIColor, colorThree: UIColor) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = bounds
+        gradientLayer.colors = [colorOne.cgColor, colorTwo.cgColor, colorThree.cgColor]
+        layer.addSublayer(gradientLayer)
+   }
 }

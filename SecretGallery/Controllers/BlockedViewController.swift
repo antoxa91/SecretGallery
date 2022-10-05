@@ -24,8 +24,12 @@ final class BlockedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .black
+        view.setGradietColor(
+            colorOne: .init(red: 2/255, green: 4/255, blue: 20/255, alpha: 1),
+            colorTwo: .init(red: 33/255, green: 3/255, blue: 15/255, alpha: 1),
+            colorThree: .init(red: 66/255, green: 2/255, blue: 10/255, alpha: 1)
+        )
+
         addSettingsForButton()
         
         password = KeychainWrapper.standard.string(forKey: "password") ?? "Не удалось загрузить пароль"

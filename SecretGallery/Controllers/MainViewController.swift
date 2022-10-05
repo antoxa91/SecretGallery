@@ -17,10 +17,13 @@ final class MainViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 2, left: 2, bottom: 4, right: 2)
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemBackground
         collectionView.register(PicsCollectionViewCell.self,
                                 forCellWithReuseIdentifier: PicsCollectionViewCell.identifier)
-        collectionView.backgroundColor = .black
+        collectionView.backgroundView = GradientView(colors: [
+            UIColor.black.cgColor,
+            .init(red: 33/255, green: 3/255, blue: 15/255, alpha: 1),
+            UIColor.black.cgColor]
+        )
         collectionView.bounces = false
         return collectionView
     }()
@@ -32,10 +35,8 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.backButtonTitle = ""
-        
         navigationController?.navigationBar.tintColor = .systemMint
         title = "Секретная галерея"
-        
         setPasswordButton = UIBarButtonItem(image: UIImage(systemName: "key.viewfinder"), style: .plain, target: self, action: #selector(setPasswordTapped))
         lockButton = UIBarButtonItem(image: UIImage(systemName: "lock"), style: .plain, target: self, action: #selector(lockButtonTapped))
         lockButton.tintColor = .red
