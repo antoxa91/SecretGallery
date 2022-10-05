@@ -1,0 +1,20 @@
+PODS:
+  - ShimmerSwift (2.1.1)
+  - SwiftKeychainWrapper (4.0.1)
+
+DEPENDENCIES:
+  - ShimmerSwift
+  - SwiftKeychainWrapper
+
+SPEC REPOS:
+  trunk:
+    - ShimmerSwift
+    - SwiftKeychainWrapper
+
+SPEC CHECKSUMS:
+  ShimmerSwift: f7ed2daf9c246de8299dfd9e12c6ab465cba9842
+  SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
+
+PODFILE CHECKSUM: 0a558e2b3fc45f88445d86904d10e3f2443d3e21
+
+COCOAPODS: 1.11.3

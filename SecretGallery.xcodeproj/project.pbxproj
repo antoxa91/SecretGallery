@@ -92,9 +92,8 @@
 			children = (
 				C53BE6DB28EC340800C2F42A /* Application */,
 				C57B1A3528EC3E79000F33F0 /* Controllers */,
-				C53BE6D328EC32B200C2F42A /* PicsCollectionViewCell.swift */,
-				C53BE6D728EC32E300C2F42A /* ImageScrollView.swift */,
-				C53BE6D928EC32FA00C2F42A /* Images.swift */,
+				C58B1A3F28EE201C00D2FB93 /* Cell */,
+				C58B1A3E28EE200900D2FB93 /* Model */,
 				C57B1A3128EC3914000F33F0 /* GradientButton.swift */,
 				C53BE6DC28EC346100C2F42A /* Helpers */,
 			);
@@ -128,6 +127,23 @@
 				C53BE6D528EC32CA00C2F42A /* DetailViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C58B1A3E28EE200900D2FB93 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C53BE6D928EC32FA00C2F42A /* Images.swift */,
+				C53BE6D728EC32E300C2F42A /* ImageScrollView.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C58B1A3F28EE201C00D2FB93 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C53BE6D328EC32B200C2F42A /* PicsCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -24,10 +24,7 @@ final class MainViewController: UIViewController {
         collectionView.bounces = false
         return collectionView
     }()
-    
-    var myPics = [Images]()
-    let defaults = UserDefaults.standard
-    
+
     var lockButton: UIBarButtonItem!
     var setPasswordButton: UIBarButtonItem!
     var myPassword: String?
@@ -47,7 +44,8 @@ final class MainViewController: UIViewController {
         
         view.addSubview(picsCollectionView)
         setDelegates()
-        loadSavedImages()
+        
+        Images.shared.loadSavedPics()
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(lockButtonTapped), name: UIApplication.willResignActiveNotification, object: nil)
@@ -89,23 +87,22 @@ final class MainViewController: UIViewController {
     
     // MARK: - ContextMenu
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let imageForDelete = myPics[indexPath.item]
-        let config = UIContextMenuConfiguration(actionProvider:
-                                                    {[weak self] _ in
+        let config = UIContextMenuConfiguration(actionProvider: {[weak self] _ in
             let deleteItem = UIAction(
                 title: "Удалить",
                 image: UIImage(systemName: "trash"),
                 attributes: .destructive
             ) { _ in
-                self?.deletePic(index: indexPath, image: imageForDelete)
-                self?.saveArrayOfMyPics()
+                let imageForDelete = Images.shared.myPics[indexPath.item]
+                guard let picsCollectionView = self?.picsCollectionView else { return }
+                Images.shared.deletePic(
+                    index: indexPath,
+                    image: imageForDelete,
+                    picsCollectionView: picsCollectionView)
+                Images.shared.saveArrayOfMyPics()
             }
             
-            return UIMenu(
-                title: "Действия",
-                options: UIMenu.Options.displayInline,
-                children: [deleteItem]
-            )
+            return UIMenu(title: "Действия", options: .displayInline, children: [deleteItem])
         })
         return config
     }
@@ -115,7 +112,7 @@ final class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailVC = DetailViewController()
-        detailVC.detailImage.image = getMyPic(by: indexPath)
+        detailVC.detailImage.image = Images.shared.getMyPic(by: indexPath)
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
@@ -123,19 +120,26 @@ extension MainViewController: UICollectionViewDelegate {
 // MARK: - UICollectionViewDataSource
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        myPics.count
+        Images.shared.myPics.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PicsCollectionViewCell.identifier, for: indexPath) as? PicsCollectionViewCell else { return UICollectionViewCell() }
-        cell.myImageView.image = getMyPic(by: indexPath)
+        cell.myImageView.image = Images.shared.getMyPic(by: indexPath)
         return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.size.width/3.08,
+                      height: view.frame.size.width/3.08)
     }
 }
 
 // MARK: - UIImagePickerControllerDelegate & UINavigationControllerDelegate
 extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
     @objc private func addPicTapped() {
         let picker = UIImagePickerController()
         picker.allowsEditing = true
@@ -148,59 +152,20 @@ extension MainViewController: UIImagePickerControllerDelegate, UINavigationContr
         guard let image = info[.editedImage] as? UIImage else {return}
         
         let imageName = UUID().uuidString
-        let imagePath = Images.getDocumentsDirectory().appendingPathComponent(imageName)
+        let imagePath = Images.shared.getDocumentsDirectory().appendingPathComponent(imageName)
         if let jpegData = image.jpegData(compressionQuality: 0.5) {
             try? jpegData.write(to: imagePath)
         }
         let newPic = Images(image: imageName)
-        myPics.append(newPic)
+        
+        Images.shared.myPics.append(newPic)
         
         DispatchQueue.main.async {
             self.picsCollectionView.reloadData()
         }
-        saveArrayOfMyPics()
+        Images.shared.saveArrayOfMyPics()
         dismiss(animated: true, completion: nil)
     }
 }
 
-// MARK: - Save, delete & load images
-extension MainViewController {
-    private func loadSavedImages() {
-        if let savedImages = defaults.object(forKey: Images.key) as? Data {
-            let jsonDecoder = JSONDecoder()
-            do {
-                myPics = try jsonDecoder.decode([Images].self, from: savedImages)
-            } catch {
-                print("Failed to load myPics")
-            }
-        }
-    }
-    
-    private func saveArrayOfMyPics() {
-        let jsonEncoder = JSONEncoder()
-        guard let savedData = try? jsonEncoder.encode(myPics) else { return }
-        defaults.set(savedData, forKey: Images.key)
-    }
-    
-    private func deletePic(index: IndexPath, image: Images) {
-        myPics.remove(at: index.item)
-        picsCollectionView.reloadData()
-    }
-    
-    private func getMyPic(by indexPath: IndexPath) -> UIImage {
-        let image = myPics[indexPath.item]
-        let path = Images.getDocumentsDirectory().appendingPathComponent(image.image)
-        guard let myPic = UIImage(contentsOfFile: path.path) else { return UIImage() }
-        return myPic
-    }
-}
-
-
-// MARK: - Size for item
-extension MainViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.size.width/3.08,
-                      height: view.frame.size.width/3.08)
-    }
-}
 
