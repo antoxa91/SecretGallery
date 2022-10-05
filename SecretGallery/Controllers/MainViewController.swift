@@ -21,6 +21,7 @@ final class MainViewController: UIViewController {
         collectionView.register(PicsCollectionViewCell.self,
                                 forCellWithReuseIdentifier: PicsCollectionViewCell.identifier)
         collectionView.backgroundColor = .black
+        collectionView.bounces = false
         return collectionView
     }()
     
@@ -78,7 +79,7 @@ final class MainViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        picsCollectionView.frame = view.bounds
+        picsCollectionView.frame = view.safeAreaLayoutGuide.layoutFrame
     }
     
     private func setDelegates() {
