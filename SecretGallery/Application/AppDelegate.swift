@@ -13,7 +13,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.cyan]
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.cyan,
+            .font: UIFont(name: "Savoye LET", size: 27) as Any
+        ]
         UINavigationBar.appearance().standardAppearance = appearance
         return true
     }
