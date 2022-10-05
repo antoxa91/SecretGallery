@@ -15,18 +15,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
-        showBlockedVC()
-    }
-
-    func sceneWillResignActive(_ scene: UIScene) {
-        showBlockedVC()
-    }
-    
-    func showBlockedVC() {
         let vc = BlockedViewController()
         window?.rootViewController = UINavigationController(rootViewController: vc)
     }
-    
+
+    func sceneWillResignActive(_ scene: UIScene) {
+    }
+
     func sceneDidDisconnect(_ scene: UIScene) {
     }
 

@@ -48,6 +48,9 @@ final class MainViewController: UIViewController {
         view.addSubview(picsCollectionView)
         setDelegates()
         loadSavedImages()
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(lockButtonTapped), name: UIApplication.willResignActiveNotification, object: nil)
     }
     
     @objc private func setPasswordTapped() {
