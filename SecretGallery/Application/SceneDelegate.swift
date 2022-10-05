@@ -15,17 +15,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
-        let navController = UINavigationController(rootViewController: BlockedViewController())
-        window?.rootViewController = navController
+        showBlockedVC()
     }
 
+    func sceneWillResignActive(_ scene: UIScene) {
+        showBlockedVC()
+    }
+    
+    func showBlockedVC() {
+        let vc = BlockedViewController()
+        window?.rootViewController = UINavigationController(rootViewController: vc)
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
-    }
-
-    func sceneWillResignActive(_ scene: UIScene) {
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
