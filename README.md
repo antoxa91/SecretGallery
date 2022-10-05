@@ -39,4 +39,4 @@ ___
 3. Open the project in Xcode
 4. Run the simulator
 
-[:arrow_up:](
+[:arrow_up:](#anchor)
