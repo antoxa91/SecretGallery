@@ -2,8 +2,6 @@
 
 <a id="anchor"></a>
 
-___
-
 The application allows you to store pictures added from the gallery for access to which you need to enter a password or use biometrics.
 
 :white_check_mark: Pictures can be added or removed. View in full screen using double tap and tap gesture.
@@ -25,22 +23,16 @@ The application allows you to store pictures added from the gallery for access t
 
 
 ### Screen Recording
-
 ___
-![startPage](https://user-images.githubusercontent.com/69522563/194069220-a342fee9-c3f3-4480-9f61-626eff3255a0.gif)
-![faceIDOpen](https://user-images.githubusercontent.com/69522563/194069256-7be40d63-8a21-4d2c-836f-5d3ecd9b198b.gif)
+![faceID DetailVC](https://user-images.githubusercontent.com/69522563/194270231-fd243019-bdfc-4c01-bc77-dfeb83adf70b.gif)
+![deletePic BlockBackground](https://user-images.githubusercontent.com/69522563/194272085-f6dbf8f9-149d-4de9-bd9d-368404f2f565.gif)
 
-![set OpenPass](https://user-images.githubusercontent.com/69522563/194069273-ce3ba317-7a28-4abc-86e4-c7cbba89aacf.gif)
-![lockInBackground](https://user-images.githubusercontent.com/69522563/194069301-468942d9-f517-4d65-b22b-dc650fd52ad5.gif)
-
-![delete AddPic](https://user-images.githubusercontent.com/69522563/194069348-9f36a7a0-19c1-41a0-a821-7127e61bc290.gif)
-![detailVC](https://user-images.githubusercontent.com/69522563/194069378-cb221cb7-321a-41e5-adf5-299bee1ff3b9.gif)
+![setPass AddPic Block](https://user-images.githubusercontent.com/69522563/194271469-0ba4ed15-4bd0-4691-bf63-76fb7c857793.gif)
+![unlockWithPass](https://user-images.githubusercontent.com/69522563/194271697-2f20b149-e06c-4f4c-b514-2794caa3c24a.gif)
 
 
 ### Installation
-
 ___
-
 1. Clone or download the project to your local machine
 2. Install pod file in project. Pods are used: `SwiftKeychainWrapper`, `ShimmerSwift`.
 3. Open the project in Xcode
