@@ -30,6 +30,7 @@ final class DetailViewController: UIViewController {
         view.addSubview(scrollView)
         setConstraints()
         scrollView.set(image: detailImage.image ?? UIImage(systemName: "photo")!)
+        scrollView.hideScreenshotContent()
     }
 
     private func setConstraints() {

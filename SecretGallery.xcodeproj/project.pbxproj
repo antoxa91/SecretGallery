@@ -19,6 +19,7 @@
 		C53BE6DA28EC32FA00C2F42A /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53BE6D928EC32FA00C2F42A /* Images.swift */; };
 		C57B1A3228EC3914000F33F0 /* Gradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57B1A3128EC3914000F33F0 /* Gradients.swift */; };
 		C57B1A3428EC392C000F33F0 /* BlockedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57B1A3328EC392C000F33F0 /* BlockedViewController.swift */; };
+		C5C32930290BF07E009310B9 /* Extension + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C3292F290BF07E009310B9 /* Extension + UIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		C53BE6D928EC32FA00C2F42A /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		C57B1A3128EC3914000F33F0 /* Gradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradients.swift; sourceTree = "<group>"; };
 		C57B1A3328EC392C000F33F0 /* BlockedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedViewController.swift; sourceTree = "<group>"; };
+		C5C3292F290BF07E009310B9 /* Extension + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIView.swift"; sourceTree = "<group>"; };
 		F800751405E8B8CA7C594D57 /* Pods_SecretGallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecretGallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -95,6 +97,7 @@
 				C58B1A3F28EE201C00D2FB93 /* Cell */,
 				C58B1A3E28EE200900D2FB93 /* Model */,
 				C57B1A3128EC3914000F33F0 /* Gradients.swift */,
+				C5C3292F290BF07E009310B9 /* Extension + UIView.swift */,
 				C53BE6DC28EC346100C2F42A /* Helpers */,
 			);
 			path = SecretGallery;
@@ -266,6 +269,7 @@
 				C53BE6C428EC322500C2F42A /* MainViewController.swift in Sources */,
 				C53BE6D428EC32B200C2F42A /* PicsCollectionViewCell.swift in Sources */,
 				C53BE6D628EC32CA00C2F42A /* DetailViewController.swift in Sources */,
+				C5C32930290BF07E009310B9 /* Extension + UIView.swift in Sources */,
 				C53BE6D828EC32E300C2F42A /* ImageScrollView.swift in Sources */,
 				C53BE6C028EC322500C2F42A /* AppDelegate.swift in Sources */,
 				C53BE6C228EC322500C2F42A /* SceneDelegate.swift in Sources */,
