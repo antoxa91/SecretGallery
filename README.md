@@ -6,6 +6,8 @@ The application allows you to store pictures added from the gallery for access t
 
 :white_check_mark: Pictures can be added or removed. View in full screen using double tap and tap gesture.
 
+:white_check_mark: If you take a screenshot, the content will be hidden.
+
 :white_check_mark: On the start screen, a button to unlock with a gradient and a shimmer. 
 
 :white_check_mark: You can set your own password. When switching to the background or closing the application is automatically blocked.
@@ -30,6 +32,7 @@ ___
 ![setPass AddPic Block](https://user-images.githubusercontent.com/69522563/194271469-0ba4ed15-4bd0-4691-bf63-76fb7c857793.gif)
 ![unlockWithPass](https://user-images.githubusercontent.com/69522563/194271697-2f20b149-e06c-4f4c-b514-2794caa3c24a.gif)
 
+![hideScreenshotContent](https://user-images.githubusercontent.com/69522563/198576661-660fd3e6-2878-43c0-af23-4614eddb5c78.gif)
 
 ### Installation
 ___
